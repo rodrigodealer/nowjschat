@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>nowjs client test</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="/nowjs/now.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" >
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			var name = prompt("What's your name?");
+			
+			now.receiveMessage = function(name, message) {
+				$("<div></div>").text(name + ": " + message).appendTo("#messageBoard")
+			};
+			
+			$("#send-button").click(function() {
+				now.distributeMessage(name, $("#message").val());
+				$("#message").val("");
+			});
+			
+		});
+	</script>
+  </head>
+
+  <body>
+	<div id="messageBoard">&nbsp; </div>
+	<label for="message">Message:</label><input name="message" id="message" />
+	<p />
+	<button type="button" id="send-button">Send</button>
+  </body>
+</html>
