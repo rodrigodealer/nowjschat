@@ -1,0 +1,14 @@
+# pre - requisites (install using  npm install <module>)
+- jasmine-node
+- mongoose
+- now
+- should
+
+# init model
+var inst = new UserModel();
+
+# saving model
+inst.name = "Rodrigo";
+inst.login = "dealer";
+inst.password = "123";
+inst.save();
