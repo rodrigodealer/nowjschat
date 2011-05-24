@@ -1,9 +1,9 @@
 var http = require('http')
-  , url = require('url')
-  , fs = require('fs')
-  , io = require('socket.io')
-  , sys = require(process.binding('natives').util ? 'util' : 'sys')
-  , server;
+	, url = require('url')
+	, fs = require('fs')
+  // , io = require('socket.io')
+	, sys = require(process.binding('natives').util ? 'util' : 'sys')
+	, server;
     
 server = http.createServer(function(req, res){
   // your normal server code
@@ -34,6 +34,11 @@ server = http.createServer(function(req, res){
     default: send404(res);
   }
 });
+
+mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/chat');
+
+require('./model/user.js');
 
 send404 = function(res){
   res.writeHead(404);
