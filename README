@@ -3,6 +3,9 @@
 - mongoose
 - now
 - should
+# type in project directory:
+# $ npm install
+
 
 # init model
 var inst = new UserModel();
