@@ -7,25 +7,45 @@
 	<link rel="stylesheet" href="style/style.css" type="text/css" >
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function() {
-			var name = prompt("What's your name?");
+			var name = "unknown";
+			
+			var sendMessage = function() {
+				now.distributeMessage(name, $("#message").val());
+				$("#message").val("");
+			};
 			
 			now.receiveMessage = function(name, message) {
 				$("<div></div>").text(name + ": " + message).appendTo("#messageBoard")
 			};
 			
-			$("#send-button").click(function() {
-				now.distributeMessage(name, $("#message").val());
-				$("#message").val("");
+			$("#clientName").keydown(function(event) {
+				if (event.keyCode == '13') {
+					name = $("#clientName").val();
+					$("#clientName").attr("disabled",true);
+					$("#message").focus();
+				}
 			});
 			
+			$("#send-button").click(function() {
+				sendMessage();
+			});
+			
+			$("#message").keydown(function(event) {
+				if (event.keyCode == '13') {
+					sendMessage();
+				}
+			});
 		});
 	</script>
   </head>
 
   <body>
-	<div id="messageBoard">&nbsp; </div>
-	<label for="message">Message:</label><input name="message" id="message" />
-	<p />
-	<button type="button" id="send-button">Send</button>
+	<div id="clientBox">
+		<div id="messageBoard">&nbsp; </div>
+		<label for="clientName">Name:</label><input name="clientName" id="clientName" />
+		<label for="message">Message:</label><input name="message" id="message" />
+		<p />
+		<button type="button" id="send-button">Send</button>
+	</div>
   </body>
 </html>

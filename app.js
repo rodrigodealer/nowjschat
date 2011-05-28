@@ -21,7 +21,7 @@ server = http.createServer(function(req, res) {
 					res.end();
 			});
 			break;
-		case '/style.css':
+		case '/style/style.css':
 			fs.readFile(__dirname + path, function(err, data){
 				if (err) return send404(res);
 					res.writeHead(200, 'text/css')

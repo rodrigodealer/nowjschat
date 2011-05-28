@@ -4,3 +4,7 @@
 	height: 150px;
 	overflow: auto;
 }
+
+#clientBox label {
+	display: block;
+}
