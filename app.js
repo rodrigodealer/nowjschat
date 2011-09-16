@@ -37,6 +37,7 @@ mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/chat');
 
 require('./model/user.js');
+require('./model/talk.js');
 
 send404 = function(res){
 	res.writeHead(404);
@@ -52,4 +53,15 @@ var everyone = nowjs.initialize(server);
 
 everyone.now.distributeMessage = function(nome, msg){
 	everyone.now.receiveMessage(nome, msg);
+	var talk = new TalkModel();
+	talk.name = nome;
+	talk.message = msg;
+	talk.atendimentoId = 1;
+	talk.save(function (err) {
+		console.log(err);
+	});
+	
+	TalkModel.find({ 'atendimentoId': 1 }, function (err, docs) {
+	  console.log(docs);
+	});
 }

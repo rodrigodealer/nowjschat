@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="style/style.css" type="text/css" >
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function() {
-			var name = "unknown";
 			
 			var sendMessage = function() {
+				var name = $("#clientName").val();
 				now.distributeMessage(name, $("#message").val());
 				$("#message").val("");
 			};
